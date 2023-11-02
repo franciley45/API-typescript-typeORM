@@ -26,7 +26,7 @@
    },
    "scripts": {
       "build": "tsc",
-      "prestart": "npm run build",
+      "prestart": "npm run typeorm -- -d ./src/database/data-source.ts migration:run && npm run build",
       "start": "node ./build/server.js",
       "predev:server": "npm run typeorm -- -d ./src/database/data-source.ts migration:run",
       "dev:server": "ts-node-dev src/server.ts",
