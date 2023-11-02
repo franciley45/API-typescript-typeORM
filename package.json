@@ -26,8 +26,6 @@
       "uuid": "^9.0.1"
    },
    "scripts": {
-      "build": "tsc",
-      "start": "node src/server.js",
       "predev:server": "npm run typeorm -- -d ./src/database/data-source.ts migration:run",
       "dev:server": "ts-node-dev src/server.ts",
       "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
