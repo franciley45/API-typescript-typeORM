@@ -10,6 +10,8 @@ import swaggerDocument from "./swagger.json"
 
 const app = express();
 
+const port = 3000;
+
 app.use(cors());
 app.use(express.json());
 app.use(routerUsers);
@@ -18,7 +20,7 @@ app.use(routerVideos);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 AppDataSource.initialize().then( async () => {
 console.log('Database OK')
-app.listen(3333, () => {
-    console.log('Server started on por 3333')
+app.listen(port, () => {
+    console.log('Server started on por 3000')
 })
 })
