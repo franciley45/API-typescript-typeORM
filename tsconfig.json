@@ -6,8 +6,8 @@
        "es6"
      ], 
      "allowJs": true,
-     "outDir": "build",
-     "rootDir": "src",
+     "outDir": "./dist",
+     "rootDir": "./src",
      "strict": true,
      "noImplicitAny": true,
      "strictPropertyInitialization": false,
