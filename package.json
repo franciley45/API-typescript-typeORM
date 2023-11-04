@@ -22,13 +22,17 @@
       "reflect-metadata": "^0.1.13",
       "swagger-ui-express": "^5.0.0",
       "typeorm": "0.3.17",
+      "typeorm-extension": "^3.1.1",
       "uuid": "^9.0.1"
    },
    "scripts": {
       "build": "tsc",
+      "prestart": " npm run typeorm -- -d ./src/database/data-source.ts migration:run && npm run seed && npm run build",
       "start": "node dist/server.js",
       "predev:server": "npm run typeorm -- -d ./src/database/data-source.ts migration:run",
       "dev:server": "ts-node-dev src/server.ts",
-      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+      "seed:create": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:create -n",
+      "seed": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:run  -d ./src/database/data-source.ts"
    }
 }

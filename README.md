@@ -25,11 +25,30 @@ npm i @types/express @types/cors ts-node-dev -D
 ```
 
 ```
-6. comando para criar as migration
+6. comando para criar as migrations
 ```
 npm run typeorm migration:create src/database/migrations/CreateUsersTable
 ```
 7. comando para rodar as migrations
 ```
 npm run typeorm -- -d ./src/database/data-source.ts migration:run
+```
+9. instalar dependecia para criar as seeds faça alterações no arquivo data-source.ts como esta no projeto
+```
+npm i typeorm-extension
+```
+10. acrescentar o script no package.json
+```
+   "scripts": {
+      "seed:create": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:create -n",
+      "seed": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:run  -d ./src/database/data-source.ts"
+   }
+```
+11. comando para criar as seeds
+```
+npm run seed:create src/database/seeds/UserSeed
+```
+11. comando para roda as seeds
+```
+npm run seed
 ```
