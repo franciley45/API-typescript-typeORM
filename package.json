@@ -29,8 +29,8 @@
       "build": "tsc",
       "prestart": " npm run typeorm -- -d ./src/database/data-source.ts migration:run && npm run seed && npm run build",
       "start": "node dist/server.js",
-      "predev:server": "npm run typeorm -- -d ./src/database/data-source.ts migration:run",
-      "dev:server": "ts-node-dev src/server.ts",
+      "predev": "npm run typeorm -- -d ./src/database/data-source.ts migration:run",
+      "dev": "ts-node-dev src/server.ts",
       "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
       "seed:create": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:create -n",
       "seed": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:run  -d ./src/database/data-source.ts"

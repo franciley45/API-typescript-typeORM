@@ -7,6 +7,7 @@ import { SeederOptions } from "typeorm-extension"
 import { UserSeed1699116647883 } from "./seeds/1699116647883-UserSeed"
 import { CategorySeed1699116937326 } from "./seeds/1699116937326-CategorySeed"
 import { VideoSeed1699128473504 } from "./seeds/1699128473504-VideoSeed"
+import { Userupdate1699192959717 } from "./seeds/1699192959717-Userupdate"
 require('dotenv').config()
 
 
@@ -21,7 +22,7 @@ const options: DataSourceOptions & SeederOptions = {
     logging: false,
     entities: [User, Category,Video],
     migrations: ["./migrations/*.ts"],
-    seeds: [UserSeed1699116647883, CategorySeed1699116937326, VideoSeed1699128473504],
+    seeds: [UserSeed1699116647883, CategorySeed1699116937326, VideoSeed1699128473504, Userupdate1699192959717],
     subscribers: []
 }
 
