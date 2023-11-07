@@ -24,6 +24,12 @@ export class CreateUsersTable1674307725393 implements MigrationInterface {
 						type: 'varchar',
 						length: '100',
 						isNullable: false
+					},
+					{
+						name: 'password',
+						type: 'varchar',
+						length: '100',
+						isNullable: false
 					}
 				]
 			})

@@ -10,9 +10,23 @@ userRouter.get('/', async (_req: Request, res: Response): Promise<Response> => {
 });
 
 userRouter.post('/', async (req: Request, res: Response): Promise<Response> => {
-    const { name, email } = req.body
-    const users = await UserService.createUser(name, email);
-    return res.status(200).json(users);
+    const { name, email, password } = req.body
+
+    const { status, message } = await UserService.createUser(name, email, password);
+
+    if (status === 409) return res.status(status).json({ message });
+
+    return res.status(status).json(message);
+});
+
+userRouter.post('/login', async (req: Request, res: Response): Promise<Response> => {
+    const { email, password } = req.body
+
+    const { status, message } = await UserService.loginUser(email, password);
+
+    if (status === 409) return res.status(status).json({ message });
+
+    return res.status(status).json(message);
 });
 
 export default userRouter;

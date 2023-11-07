@@ -14,6 +14,7 @@ export class UserSeed1699116647883 implements Seeder {
 		const userData = {
 			name: 'franciley',
 			email: 'franciley@email.com',
+			password: "12345"
 		}
 
 		const userExists = await userRepository.findOneBy({ email: userData.email })

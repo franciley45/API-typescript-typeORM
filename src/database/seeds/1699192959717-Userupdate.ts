@@ -11,14 +11,18 @@ export class Userupdate1699192959717 implements Seeder {
     ): Promise<any> {
         const userRepository = dataSource.getRepository(User)
 
+        const userRepo = await userRepository.find()
 
-        const newUser = userRepository.create([
-            { name: "user1", email: "user1@gmail.com" },
-            { name: "user2", email: "user2@gmail.com" },
-            { name: "user3", email: "user3@gmail.com" },
-            { name: "user4", email: "user4@gmail.com" },
-            { name: "user5", email: "user5@gmail.com" },
-        ])
-        await userRepository.save(newUser)
+        const users = [
+            { name: "user1", email: "user1@gmail.com", password: "12345" },
+            { name: "user2", email: "user2@gmail.com", password: "12345" },
+            { name: "user3", email: "user3@gmail.com", password: "12345" },
+        ]
+
+        userRepo.forEach( async (element) => {
+            const resultado = users.filter(elemento => elemento.email == element.email);
+            const newUser = userRepository.create(resultado)
+            await userRepository.save(newUser)
+        })
     }
 }

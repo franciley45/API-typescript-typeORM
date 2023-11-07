@@ -14,7 +14,7 @@ export class VideoSeed1699128473504 implements Seeder {
 			name: 'Todo mundo em panico2',
 			description: 'Filmes engraçados',
             duration: 120,
-            category_id: '9d632b13-871d-4600-9d9e-07c5f919f915'
+            category_id: '3a783c92-d359-4214-aa70-20b7940d4996'
 		}
 
 		const videoExists = await videoRepository.findOneBy({ name: videoData.name })

@@ -3,12 +3,13 @@ import { CreateCategoryController } from '../controllers/CreateCategoryControlle
 import { GetAllCategoryController } from '../controllers/GetAllCategoryController';
 import { DeleteCategoryController } from '../controllers/DeleteCategoryController';
 import { UpdateCategoryController } from '../controllers/UpdateCategoryController';
+import { validateJWT } from '../middleware/ValidateJWT';
 
 const routerCategories = Router();
-routerCategories.get('/categories', new GetAllCategoryController().getAllCategory);
-routerCategories.post('/categories', new CreateCategoryController().createCategory);
-routerCategories.put('/categories/:id', new UpdateCategoryController().UpdateCategory);
-routerCategories.delete('/categories/:id', new DeleteCategoryController().DeleteCategory);
+routerCategories.get('/categories',validateJWT, new GetAllCategoryController().getAllCategory);
+routerCategories.post('/categories',validateJWT, new CreateCategoryController().createCategory);
+routerCategories.put('/categories/:id',validateJWT, new UpdateCategoryController().UpdateCategory);
+routerCategories.delete('/categories/:id',validateJWT, new DeleteCategoryController().DeleteCategory);
 
 
 export default routerCategories;
