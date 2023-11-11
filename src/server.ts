@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import { AppDataSource } from "./database/data-source";
 import routerUsers from "./routes/routerUsers";
@@ -18,6 +18,10 @@ app.use(routerUsers);
 app.use(routerCategories);
 app.use(routerVideos);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+app.get('/swagger', (req:Request, res: Response) =>{
+    return res.sendFile(process.cwd() + "/swagger.json")
+})
+
 AppDataSource.initialize().then( async () => {
 console.log('Database OK')
 app.listen(port, () => {
