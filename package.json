@@ -25,13 +25,13 @@
       "swagger-ui-express": "^5.0.0",
       "typeorm": "0.3.17",
       "typeorm-extension": "^3.1.1",
-      "uuid": "^9.0.1"
+      "uuid": "^9.0.1",
+      "swagger-ui-dist": "^5.9.1"
    },
    "scripts": {
       "build": "tsc",
       "prestart": " npm run typeorm -- -d ./src/database/data-source.ts migration:run && npm run seed && npm run build",
       "start": "node dist/server.js",
-      "predev": "npm run typeorm -- -d ./src/database/data-source.ts migration:run && npm run seed",
       "dev": "ts-node-dev src/server.ts",
       "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
       "seed:create": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:create -n",
