@@ -1,9 +1,0 @@
-{
-    "openapi": "3.0.1",
-    "info": {
-        "title": "Videos",
-        "description": "Documentation from videos api",
-        "version": "1.0.0"
-    },
-    "basePath": "/"
-}

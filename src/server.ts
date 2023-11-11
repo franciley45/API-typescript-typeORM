@@ -6,7 +6,8 @@ import routerUsers from "./routes/routerUsers";
 import routerCategories from "./routes/routerCategories";
 import routerVideos from "./routes/routerVideos";
 import swaggerUI from "swagger-ui-express";
-import swaggerDocument from "./swagger.json"
+import swaggerDocument from "./public/swagger.json"
+import path from "path";
 
 const app = express();
 
@@ -19,10 +20,10 @@ app.use(routerCategories);
 app.use(routerVideos);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 app.get('/swagger', (req:Request, res: Response) =>{
-    return res.sendFile(process.cwd() + "/swagger.json")
+    return res.sendFile(path.resolve('src', 'public', 'swagger.json'))
 })
 app.get('/docs', (req:Request, res: Response) =>{
-    return res.sendFile(process.cwd() + "/index.html")
+    return res.sendFile(path.resolve('src', 'public', 'index.html'))
 })
 
 AppDataSource.initialize().then( async () => {
