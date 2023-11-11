@@ -21,6 +21,9 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 app.get('/swagger', (req:Request, res: Response) =>{
     return res.sendFile(process.cwd() + "/swagger.json")
 })
+app.get('/docs', (req:Request, res: Response) =>{
+    return res.sendFile(process.cwd() + "/index.html")
+})
 
 AppDataSource.initialize().then( async () => {
 console.log('Database OK')

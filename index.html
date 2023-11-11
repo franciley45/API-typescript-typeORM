@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <title>Redoc</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API-TypeORM-Franciley-Rodrigues</title>
-</head>
-
-<body>
-    <div id="redoc-container"></div>
-    <script src="https://cdn.jsdelivr.net/npm/redoc@2.0.0-rc.55/bundles/redoc.standalone.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/wl18/redoc-tryp1.4.1/dist/try.js"></script>
-    <script>
-        initTry({
-            openApi: "https://api-typescript-type-orm-franciley45.vercel.app/swagger",
-            redocOptions: { scrollYOffset: 50 },
-        })
-    </script>
-</body>
-
+    <!--
+    Redoc doesn't change outer page styles
+    -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <redoc spec-url='http://localhost:3000/swagger'></redoc>
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"> </script>
+  </body>
 </html>
