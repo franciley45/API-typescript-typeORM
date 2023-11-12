@@ -25,19 +25,11 @@ app.use(routerUsers);
 app.use(routerCategories);
 app.use(routerVideos);
 
-
-
-/* app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument)) */
-
 const CSS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css';
-
 const options = {
 customCssUrl: CSS_URL,
 };
-
 app.use('/api-docs', swaggerUI.serveFiles(swaggerDocument, options), swaggerUI.setup(swaggerDocument, options));
-
-
 
 app.get('/swagger', (req:Request, res: Response) =>{
     return res.sendFile(path.resolve('src', 'public', 'swagger.json'))

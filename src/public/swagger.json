@@ -1,8 +1,8 @@
 {
 	"openapi": "3.0.0",
 	"info": {
-		"title": "API-BLOG.",
-		"description": "Essa API tem como objetivo todas as funcionalidades de um blog, incluindo login de usuário, cadastro de usuário e criação de post, com o CRUD completas. Repositório [https://github.com/franciley45/Blog-Software-Completo](https://github.com/franciley45/Blog-Software-Completo)",
+		"title": "API-TYPEORM.",
+		"description": "Esta API foi criada com o intuito de aprimorar minhas habilidades em TypeScript, TypeORM, migrations, seeds e deploy, com o CRUD completas. Repositório [https://github.com/franciley45/API-typescript-typeORM](https://github.com/franciley45/API-typescript-typeORM)",
 		"contact": {
 			"email": "testepa45@gmail.com"
 		},
@@ -19,12 +19,12 @@
 		}
 	],
 	"paths": {
-		"/login": {
+		"/users/login": {
 			"post": {
 				"summary": "Login de Usuário",
 				"description": "Essa rota será responsável por Login do usuário",
 				"tags": [
-					"Login"
+					"User"
 				],
 				"requestBody": {
 					"content": {
@@ -35,8 +35,8 @@
 							"examples": {
 								"user": {
 									"value": {
-										"email": "user1@gmail.com",
-										"password": "123"
+										"email": "franciley@email.com",
+										"password": "12345"
 									}
 								}
 							}
@@ -44,11 +44,14 @@
 					}
 				},
 				"responses": {
-					"422": {
-						"description": "all fields must be filled in!"
+					"400": {
+						"description": "fill in all fields!"
 					},
-					"409": {
-						"description": "User already registered!"
+					"403": {
+						"description": "unregistered user!"
+					},
+					"401": {
+						"description": "wrong password!"
 					},
 					"200": {
 						"description": "OK",
@@ -63,7 +66,7 @@
 				}
 			}
 		},
-		"/user": {
+		"/users": {
 			"post": {
 				"summary": "Cadastro de Usuário",
 				"description": "Essa rota será responsável por cadastrar um novo usuário",
@@ -81,7 +84,7 @@
 									"value": {
 										"name": "franciley rodrigues",
 										"email": "test@gmail.com",
-										"password": "123"
+										"password": "12345"
 									}
 								}
 							}
@@ -89,8 +92,8 @@
 					}
 				},
 				"responses": {
-					"422": {
-						"description": "all fields must be filled in!"
+					"400": {
+						"description": "fill in all fields!"
 					},
 					"409": {
 						"description": "User already registered!"

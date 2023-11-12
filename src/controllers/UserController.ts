@@ -14,7 +14,7 @@ userRouter.post('/', async (req: Request, res: Response): Promise<Response> => {
 
     const { status, message } = await UserService.createUser(name, email, password);
 
-    if (status === 409) return res.status(status).json({ message });
+    if (status !== 201) return res.status(status).json({ message });
 
     return res.status(status).json(message);
 });
@@ -24,7 +24,7 @@ userRouter.post('/login', async (req: Request, res: Response): Promise<Response>
 
     const { status, message } = await UserService.loginUser(email, password);
 
-    if (status === 409) return res.status(status).json({ message });
+    if (status !== 201) return res.status(status).json({ message });
 
     return res.status(status).json(message);
 });

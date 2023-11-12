@@ -22,7 +22,7 @@ const getUsers = async (): Promise<IUser[]> => {
 const createUser = async (name: string, email: string, password: string): Promise<IUserRequest> => {
 
   const validadeUser = ValidadeUser(name, email, password)
-  if (!validadeUser) return { status: 409, message: "all required fields are filled in!" }
+  if (!validadeUser) return { status: 400, message: "fill in all fields!"}
 
   const userExists = await userService.findOneBy({ email })
   if (userExists) return { status: 409, message: "User already exists in the database!" }
@@ -42,16 +42,16 @@ const createUser = async (name: string, email: string, password: string): Promis
 
 const loginUser = async (email: string, password: string): Promise<IUserRequest> => {
 
-  if(!email || !password) return { status: 409, message: "fill in all fields!" }
+  if(!email || !password) return { status:  400, message: "fill in all fields!" }
 
   const userExists = await userService.findOneBy({ email })
 
-  if (!userExists) return { status: 409, message: "unregistered user!" }
-  if (userExists.password !== password) return { status: 409, message: "wrong password!" }
+  if (!userExists) return { status: 403, message: "unregistered user!" }
+  if (userExists.password !== password) return { status: 401, message: "wrong password!" }
 
-  const token = jwt.sign({ id: 23 }, process.env.JWT_SECRET, jwtConfig);
+  const token = jwt.sign({ id: userExists.id }, process.env.JWT_SECRET, jwtConfig);
 
-  return { status: 201, message: { user_id: 23, name: userExists.name, token } };
+  return { status: 201, message: { user_id: userExists.id, name: userExists.name, token } };
 }
 
 
