@@ -8,7 +8,7 @@ export class CreateVideos1698674422056 implements MigrationInterface {
 				name: "videos",
 				columns: [
 					{
-						name: "id",
+						name: "video_id",
 						type: "varchar",
 						isPrimary: true
 					},
@@ -41,7 +41,7 @@ export class CreateVideos1698674422056 implements MigrationInterface {
 						name: "fk_videos_category",
 						columnNames: ["category_id"],
 						referencedTableName: "categories",
-						referencedColumnNames: ["id"]
+						referencedColumnNames: ["category_id"]
 					}
 				]
 			})

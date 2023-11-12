@@ -5,7 +5,7 @@ import Category from './Category';
 @Entity('videos')
 class Video {
 	@PrimaryColumn()
-	id: string;
+	video_id: string;
 
 	@Column()
 	name: string;
@@ -27,8 +27,8 @@ class Video {
 	created_at: string;
 
 	constructor() {
-		if (!this.id) {
-			this.id = uuid();
+		if (!this.video_id) {
+			this.video_id = uuid();
 		}
 	}
 }

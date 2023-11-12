@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 @Entity('categoreis')
 class Category {
 	@PrimaryColumn()
-	id: string;
+	category_id: string;
 
 	@Column()
 	name: string;
@@ -16,8 +16,8 @@ class Category {
 	created_at: string;
 
 	constructor() {
-		if (!this.id) {
-			this.id = uuid();
+		if (!this.category_id) {
+			this.category_id = uuid();
 		}
 	}
 }

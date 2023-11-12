@@ -8,7 +8,7 @@ export class CreateVideoService {
 		const repo = AppDataSource.getRepository(Video)
 		const repoCategory = AppDataSource.getRepository(Category)
 
-		if (!await repoCategory.findOne({ where: { id: category_id } })) return Error("category not found");
+		if (!await repoCategory.findOne({ where: { category_id } })) return Error("category not found");
 
 		const video = repo.create({ name, description, duration, category_id });
 

@@ -49,9 +49,9 @@ const loginUser = async (email: string, password: string): Promise<IUserRequest>
   if (!userExists) return { status: 403, message: "unregistered user!" }
   if (userExists.password !== password) return { status: 401, message: "wrong password!" }
 
-  const token = jwt.sign({ id: userExists.id }, process.env.JWT_SECRET, jwtConfig);
+  const token = jwt.sign({ id: userExists.user_id }, process.env.JWT_SECRET, jwtConfig);
 
-  return { status: 201, message: { user_id: userExists.id, name: userExists.name, token } };
+  return { status: 201, message: { user_id: userExists.user_id, name: userExists.name, token } };
 }
 
 

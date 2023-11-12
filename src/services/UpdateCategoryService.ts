@@ -6,7 +6,7 @@ import CategoryRequest from "../interfaces/ICategoryRequest";
 export class UpdateCategoryService {
 	async UpdateCategory({ id, name, description }: CategoryRequest): Promise<Category | Error> {
 		const repo = AppDataSource.getRepository(Category);
-		const [checkCategory] = await repo.find({ where: { id } })
+		const [checkCategory] = await repo.find({ where: { category_id: id } })
          
 		if (!checkCategory) {
 			return Error("Category already exists");
