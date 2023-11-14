@@ -1,10 +1,11 @@
 import { Request, Response, Router } from 'express';
 import UserService from '../services/UserService';
+import { validateJWT } from '../middleware/ValidateJWT';
 
 
 const userRouter = Router();
 
-userRouter.get('/', async (_req: Request, res: Response): Promise<Response> => {
+userRouter.get('/', validateJWT, async (_req: Request, res: Response): Promise<Response> => {
     const users = await UserService.getUsers();
     return res.status(200).json(users);
 });
