@@ -2,7 +2,7 @@
 	"openapi": "3.0.0",
 	"info": {
 		"title": "API-TYPEORM.",
-		"description": "Esta API foi criada com o intuito de aprimorar minhas habilidades em TypeScript, TypeORM, migrations, seeds, swagger, redocly e deploy, com o CRUD completo.Trata-se de uma playlist de filmes, onde as pessoas podem cadastrar novos filmes. Para isso, é necessário estar logado. Se você preferir, também pode utilizar a documentação feita com Redocly [http://localhost:3000/docs](http://localhost:3000/docs). Repositório [https://github.com/franciley45/API-typescript-typeORM](https://github.com/franciley45/API-typescript-typeORM)" ,
+		"description": "Esta API foi criada com o intuito de aprimorar minhas habilidades em TypeScript, TypeORM, migrations, seeds, swagger, redocly e deploy, com o CRUD completo.Trata-se de uma playlist de filmes, onde as pessoas podem cadastrar novos filmes. Para isso, é necessário estar logado. Se você preferir, também pode utilizar a documentação feita com Redocly [https://api-typescript-type-orm-franciley45.vercel.app/docs](https://api-typescript-type-orm-franciley45.vercel.app/docs). Repositório [https://github.com/franciley45/API-typescript-typeORM](https://github.com/franciley45/API-typescript-typeORM)" ,
 		"contact": {
 			"email": "testepa45@gmail.com"
 		},
