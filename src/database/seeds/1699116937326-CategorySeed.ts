@@ -12,7 +12,7 @@ export class CategorySeed1699116937326 implements Seeder {
         const CategoryRepository = dataSource.getRepository(Category)
 
 		const CategoryData = {
-			name: 'comedia',
+			name: 'Comedia',
 			description: 'filmes de comedia',
 		}
 

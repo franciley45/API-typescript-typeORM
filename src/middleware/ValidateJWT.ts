@@ -11,10 +11,10 @@ export const validateJWT = (req: Request, res: Response, next: NextFunction) => 
       return res.status(err.statusCode).json({ message: err.message })
     }
     
-    /* const tokenSlice = token.slice(7); */
+    const tokenSlice = token.slice(7);
   
     try {
-      const result = jwt.verify(token, process.env.JWT_SECRET);
+      jwt.verify(tokenSlice, process.env.JWT_SECRET);
       next();
     } catch (e) {
       const err = { statusCode: 401, message: 'Expired or invalid token' };

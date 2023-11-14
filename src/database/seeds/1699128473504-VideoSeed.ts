@@ -11,10 +11,10 @@ export class VideoSeed1699128473504 implements Seeder {
     ): Promise<any> {
         const videoRepository = dataSource.getRepository(Video)
 		const videoData = {
-			name: 'Todo mundo em panico2',
+			name: 'Todo mundo em Panico2',
 			description: 'Filmes engraçados',
             duration: 120,
-            category_id: '8794b30a-99e1-4fba-84b7-c4eda34aac32'
+            category_id: 'aqui vai o ID da Categoria vc precisa tb descomenta essa seed no arquivo data-source.ts'
 		}
 
 		const videoExists = await videoRepository.findOneBy({ name: videoData.name })

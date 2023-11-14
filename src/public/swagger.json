@@ -2,7 +2,7 @@
 	"openapi": "3.0.0",
 	"info": {
 		"title": "API-TYPEORM.",
-		"description": "Esta API foi criada com o intuito de aprimorar minhas habilidades em TypeScript, TypeORM, migrations, seeds e deploy, com o CRUD completas. Repositório [https://github.com/franciley45/API-typescript-typeORM](https://github.com/franciley45/API-typescript-typeORM)",
+		"description": "Esta API foi criada com o intuito de aprimorar minhas habilidades em TypeScript, TypeORM, migrations, seeds, swagger, redocly e deploy, com o CRUD completo.Trata-se de uma playlist de filmes, onde as pessoas podem cadastrar novos filmes. Para isso, é necessário estar logado. Se você preferir, também pode utilizar a documentação feita com Redocly [http://localhost:3000/docs](http://localhost:3000/docs). Repositório [https://github.com/franciley45/API-typescript-typeORM](https://github.com/franciley45/API-typescript-typeORM)" ,
 		"contact": {
 			"email": "testepa45@gmail.com"
 		},
@@ -111,7 +111,7 @@
 				}
 			},
 			"get": {
-				"summary": "Busca todos os usuários.",
+				"summary": "Busca todos os Usuários.",
 				"description": "Essa rota será responsável por busca todos os usuários.",
 				"tags": [
 					"User"
@@ -133,48 +133,17 @@
 				}
 			}
 		},
-		"/user/{id}": {
+		"/categories": {
 			"get": {
-				"summary": "Busca Usuário por Id",
-				"description": "Essa rota será responsável por Busca Usuário por Id",
+				"summary": "Busca todos os videos.",
+				"description": "Essa rota será responsável por busca todos os videos",
 				"tags": [
-					"User"
+					"Category"
 				],
-				"parameters": [
+				"security": [
 					{
-						"name": "id",
-						"in": "path",
-						"description": "Id do Usuário para busca",
-						"required": true,
-						"schema": {
-							"type": "integer",
-							"format": "int64"
-						}
+						"bearerAuth": []
 					}
-				],
-				"responses": {
-					"404": {
-						"description": "User not registered!"
-					},
-					"200": {
-						"description": "OK",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/user"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/post": {
-			"get": {
-				"summary": "Busca todos os Posts.",
-				"description": "Essa rota será responsável por busca todos os Posts",
-				"tags": [
-					"Post"
 				],
 				"responses": {
 					"200": {
@@ -182,7 +151,10 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/post_milagre"
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/category"
+									}
 								}
 							}
 						}
@@ -190,23 +162,22 @@
 				}
 			},
 			"post": {
-				"summary": "Cria um novo Post ",
-				"description": "Essa rota será responsável por Cria um novo.",
+				"summary": "Cria uma nova Categoria",
+				"description": "Essa rota será responsável por cria uma nova categoria.",
 				"tags": [
-					"Post"
+					"Category"
 				],
 				"requestBody": {
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/post_milagre"
+								"$ref": "#/components/schemas/category"
 							},
 							"examples": {
-								"Post": {
+								"Category": {
 									"value": {
-										"title": "A salvação esta em Jesus Cristo ",
-										"date": "2023-09-21T09:02:55.000Z",
-										"milagres": "salvação é perdão"
+										"name": "Drama",
+										"description": "filmes dramaticos"
 									}
 								}
 							}
@@ -224,7 +195,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/post_milagre"
+									"$ref": "#/components/schemas/category"
 								}
 							}
 						}
@@ -234,50 +205,19 @@
 					},
 					"400": {
 						"description": "Token not found!"
+					},
+					"409": {
+						"description": "Category already exists"
 					}
 				}
 			}
 		},
-		"/post/{id}": {
-			"get": {
-				"summary": "Busca Post por Id",
-				"description": "Essa rota será responsável por Busca Post por Id",
-				"tags": [
-					"Post"
-				],
-				"parameters": [
-					{
-						"name": "id",
-						"in": "path",
-						"description": "Id do Post para busca",
-						"required": true,
-						"schema": {
-							"type": "integer",
-							"format": "int64"
-						}
-					}
-				],
-				"responses": {
-					"404": {
-						"description": "Post not registered!"
-					},
-					"200": {
-						"description": "OK",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/post_milagre"
-								}
-							}
-						}
-					}
-				}
-			},
+		"/categories/{id}": {
 			"delete": {
-				"summary": "Deleta Post por Id",
-				"description": "Essa rota será responsável por Deleta Post por Id.",
+				"summary": "Deleta Categoria por Id",
+				"description": "Essa rota será responsável por Deleta Categoria por Id.",
 				"tags": [
-					"Post"
+					"Category"
 				],
 				"security": [
 					{
@@ -288,50 +228,43 @@
 					{
 						"name": "id",
 						"in": "path",
-						"description": "Id do Post para busca",
+						"description": "Id do Categoria para busca",
 						"required": true,
 						"schema": {
-							"type": "integer",
+							"type": "string",
 							"format": "int64"
 						}
 					}
 				],
 				"responses": {
-					"200": {
-						"description": "OK"
-					},
 					"401": {
 						"description": "Expired or invalid token!"
 					},
 					"400": {
 						"description": "Token not found!"
 					},
-					"404": {
-						"description": "Post not found!"
-					},
 					"402": {
-						"description": "this post is not yours!"
+						"description": "this Categoria is not yours!"
 					}
 				}
 			},
 			"put": {
-				"summary": "Atualizar Post por Id",
-				"description": "Essa rota será responsável por Atualizar Post por Id.",
+				"summary": "Atualizar Categoria por Id",
+				"description": "Essa rota será responsável por Atualizar Categoria por Id.",
 				"tags": [
-					"Post"
+					"Category"
 				],
 				"requestBody": {
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/post_milagre"
+								"$ref": "#/components/schemas/category"
 							},
 							"examples": {
-								"Post": {
+								"Category": {
 									"value": {
-										"title": "deus seja louvado por toda minha vida",
-										"date": "2023-09-21T09:02:55.000Z",
-										"milagres": "salvação é perdão"
+										"name": "Drama",
+										"description": "filmes de drama"
 									}
 								}
 							}
@@ -350,7 +283,7 @@
 						"description": "Id do Post para busca",
 						"required": true,
 						"schema": {
-							"type": "integer",
+							"type": "string",
 							"format": "int64"
 						}
 					}
@@ -361,7 +294,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/post_milagre"
+									"$ref": "#/components/schemas/category"
 								}
 							}
 						}
@@ -372,11 +305,89 @@
 					"400": {
 						"description": "Token not found!"
 					},
-					"404": {
-						"description": "Post not found!"
-					},
 					"402": {
-						"description": "this post is not yours!"
+						"description": "The category does not exist"
+					}
+				}
+			}
+		},
+		"/videos": {
+			"get": {
+				"summary": "Busca todos os Videos.",
+				"description": "Essa rota será responsável por busca todos os videos",
+				"tags": [
+					"Video"
+				],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/video_return_get"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"summary": "Cria um novo Video",
+				"description": "Essa rota será responsável por cria um novo video.",
+				"tags": [
+					"Video"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/video"
+							},
+							"examples": {
+								"Video": {
+									"value": {
+										"name": "Todo mundo em Panico3",
+										"description": "filme de besteirol",
+										"duration": 120,
+										"category_id": "copie o ID da categoria apage esse texto é cole aqui"
+									}
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/video"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Expired or invalid token!"
+					},
+					"400": {
+						"description": "Token not found!"
+					},
+					"409": {
+						"description": "Category already exists"
 					}
 				}
 			}
@@ -405,7 +416,7 @@
 				"type": "object",
 				"properties": {
 					"user_id": {
-						"type": "number"
+						"type": "string"
 					},
 					"name": {
 						"type": "string"
@@ -426,22 +437,68 @@
 					}
 				}
 			},
-			"post_milagre": {
+			"category": {
 				"type": "object",
 				"properties": {
-					"posts_id": {
-						"type": "number"
-					},
-					"title": {
+					"category_id": {
 						"type": "string"
 					},
-					"user_id": {
-						"type": "number"
-					},
-					"date": {
+					"name": {
 						"type": "string"
 					},
-					"milagres": {
+					"description": {
+						"type": "string"
+					},
+					"created_at": {
+						"type": "string"
+					}
+				}
+			},
+			"video_return_get": {
+				"type": "object",
+				"properties": {
+					"video_id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"created_at": {
+						"type": "string"
+					},
+					"duration": {
+						"type": "number"
+					},
+					"category_id": {
+						"type": "string"
+					},
+					"category": {
+							"$ref": "#/components/schemas/category"
+						}
+					}
+			},
+			"video": {
+				"type": "object",
+				"properties": {
+					"video_id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"created_at": {
+						"type": "string"
+					},
+					"duration": {
+						"type": "number"
+					},
+					"category_id": {
 						"type": "string"
 					}
 				}

@@ -9,7 +9,7 @@ export class UpdateCategoryService {
 		const [checkCategory] = await repo.find({ where: { category_id: id } })
          
 		if (!checkCategory) {
-			return Error("Category already exists");
+			return Error("The category does not exist");
 		}
 
         checkCategory.name = name ? name : checkCategory.name;
