@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm';
+/* import { DataSource } from 'typeorm';
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import Video from '../../entities/Video';
 
@@ -25,3 +25,4 @@ export class VideoSeed1699128473504 implements Seeder {
 		}
     }
 }
+ */
