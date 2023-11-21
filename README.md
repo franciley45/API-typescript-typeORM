@@ -1,4 +1,4 @@
-#  Para usar essa aplicação, você vai precisar ter instalado na sua máquina o Node.js, banco de MySQL e Git.
+#  Para usar essa aplicação, você vai precisar ter instalado na sua máquina o Node.js, banco de dados MySQL e Git.
 # Passos para rodar essa aplicação
 
 1. Clone o projeto do GitHub com o seguinte comando:
